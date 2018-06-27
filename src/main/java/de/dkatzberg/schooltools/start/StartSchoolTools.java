@@ -1,9 +1,8 @@
 package main.java.de.dkatzberg.schooltools.start;
 
-import java.util.List;
-
-import main.java.de.dkatzberg.schooltools.grades.GradeCalculator;
-import main.java.de.dkatzberg.schooltools.grades.domain.Grade;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import main.java.de.dkatzberg.schooltools.common.gui.CommonGuiBase;
 
 /**
  * The main method, which starts the whole application.
@@ -11,7 +10,7 @@ import main.java.de.dkatzberg.schooltools.grades.domain.Grade;
  * @author Daniel Katzberg
  *
  */
-public class StartSchoolTools {
+public class StartSchoolTools extends Application {
 
 	/**
 	 * Main method, which starts the application.
@@ -19,25 +18,18 @@ public class StartSchoolTools {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-		//TODO No defensive progamming.
-		//TODO Comments
-		int basePercantage = Integer.parseInt(args[0]);
-		int percentagePerGrade = Integer.parseInt(args[1]);
-		double maxPoints = Double.parseDouble(args[2]);
-		
-		GradeCalculator gradeCalculator = new GradeCalculator();
-		List<Grade> grades = gradeCalculator.calculateGrades(basePercantage, percentagePerGrade, maxPoints);
-		
-		grades.forEach((grade) -> {
-			System.out.println(
-					grade.getGradeGeneral() + 
-					" (" +grade.getGradeALevel() + "): " +
-					grade.getGradePoints().getFirstTupelElement() + " - " + 
-					grade.getGradePoints().getSecondTupelElement() + " (" +		
-					grade.getGradePercentageArea().getFirstTupelElement() + "% - " + 
-					grade.getGradePercentageArea().getSecondTupelElement() + "%)");
-		});
+		StartSchoolTools.launch(args);				
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
+	@Override
+    public void start(Stage stage) throws Exception {
+        // JavaFX GUI will be initialized
+		CommonGuiBase commonGuiBase = new CommonGuiBase();
+		commonGuiBase.build(stage);
+    }	
 
 }
