@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.java.de.dkatzberg.schooltools.grades.GradeCalculator;
 import main.java.de.dkatzberg.schooltools.grades.domain.Grade;
@@ -22,10 +23,17 @@ import main.java.de.dkatzberg.schooltools.grades.domain.Grade;
  */
 public class CommonGuiBase {
 
-	private int basePercantage = 45;
+	private int basePercentage = 45;
 	private int percentagePerGrade = 5;
 	private double maxPoints = 18.0;
 
+	/**
+	 * This method builds the graphical user interface based on JavaFX 8.
+	 * 
+	 * @param stage The stage is the base layer of the JavaFX GUI.
+	 */
+	// TODO Add I18n
+	// TODO Add more texts
 	public void build(Stage stage) {
 
 		// Creating a GridPane container
@@ -34,11 +42,14 @@ public class CommonGuiBase {
 		gridPane.setHgap(5);
 
 		// Defining the Name text field
-		TextField basePercantageField = new TextField();
-		basePercantageField.setPromptText("Base Percantage");
-		basePercantageField.setText(basePercantage + "");
-		GridPane.setConstraints(basePercantageField, 0, 0);
-		gridPane.getChildren().add(basePercantageField);
+		Text basePercentageText = new Text("Base Percentage");
+		GridPane.setConstraints(basePercentageText, 0, 0);
+		gridPane.getChildren().add(basePercentageText);
+		TextField basePercentageField = new TextField();
+		basePercentageField.setPromptText("Base Percentage");
+		basePercentageField.setText(basePercentage + "");
+		GridPane.setConstraints(basePercentageField, 1, 0);
+		gridPane.getChildren().add(basePercentageField);
 
 		// Defining the Last Name text field
 		TextField percentagePerGradeField = new TextField();
@@ -57,7 +68,7 @@ public class CommonGuiBase {
 
 		// Defining the Submit button
 		Button calculate = new Button("Calculate");
-		GridPane.setConstraints(calculate, 1, 0);
+		GridPane.setConstraints(calculate, 0, 3);
 		gridPane.getChildren().add(calculate);
 
 		// Setting an action for the Submit button
@@ -71,7 +82,7 @@ public class CommonGuiBase {
 			@Override
 			public void handle(ActionEvent e) {
 				GradeCalculator gradeCalculator = new GradeCalculator();
-				List<Grade> grades = gradeCalculator.calculateGrades(Integer.parseInt(basePercantageField.getText()),
+				List<Grade> grades = gradeCalculator.calculateGrades(Integer.parseInt(basePercentageField.getText()),
 						Integer.parseInt(percentagePerGradeField.getText()),
 						Double.parseDouble(maxPointsField.getText()));
 

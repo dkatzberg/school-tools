@@ -28,6 +28,9 @@ public class StartSchoolTools extends Application {
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {
+		//The Language will be initialized
+		//TODO I18nConfiguration.getInstance();
+		
 		// JavaFX GUI will be initialized
 		CommonGuiBase commonGuiBase = new CommonGuiBase();
 		commonGuiBase.build(stage);

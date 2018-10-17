@@ -24,13 +24,14 @@ public class GradeCalculator {
 	 *                           not always) a 4 (general grade, not a German
 	 *                           a-level grade).
 	 * @param percentagePerGrade The allowed percentage for a grade.
-	 * @param maxPoints          It returns a list of all calculated Grades with the
-	 *                           given percentage and points information.
-	 * @return
+	 * @param maxPoints          The maximum points for an test / exam or what ever.
+	 * @return It returns a list of all calculated Grades with the given percentage
+	 *         and points information.
 	 */
 	public List<Grade> calculateGrades(int basePercantage, int percentagePerGrade, double maxPoints) {
 
 		List<Grade> grades = new ArrayList<>();
+		// TODO The 11 should not hard coded, but an parameter
 		int minPercantage = basePercantage + (11 * (percentagePerGrade));
 		int maxPercentage = 100;
 		String gradeGeneral = "1+";
