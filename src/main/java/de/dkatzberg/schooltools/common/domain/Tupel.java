@@ -1,26 +1,22 @@
-/**
- * 
- */
 package main.java.de.dkatzberg.schooltools.common.domain;
 
 /**
- * This class defines a tupel.
+ * This class defines a tuple.
  * 
  * @author Daniel Katzberg
  *
  */
 public class Tupel<T> {
-	
+
 	private T firstTupelElement;
-	
+
 	private T secondTupelElement;
-	
-	
+
 	/**
-	 * Constructor for Tupel to set all tupel elements directly.
+	 * Constructor for tuple to set all tuple elements directly.
 	 * 
-	 * @param firstTupelElement The first tupel element.
-	 * @param secondTupelElement The second tupel element.
+	 * @param firstTupelElement  The first tuple element.
+	 * @param secondTupelElement The second tuple element.
 	 */
 	public Tupel(T firstTupelElement, T secondTupelElement) {
 		this.firstTupelElement = firstTupelElement;

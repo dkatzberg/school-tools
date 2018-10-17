@@ -18,18 +18,19 @@ public class StartSchoolTools extends Application {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		StartSchoolTools.launch(args);				
+		StartSchoolTools.launch(args);
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see javafx.application.Application#start(javafx.stage.Stage)
 	 */
 	@Override
-    public void start(Stage stage) throws Exception {
-        // JavaFX GUI will be initialized
+	public void start(Stage stage) throws Exception {
+		// JavaFX GUI will be initialized
 		CommonGuiBase commonGuiBase = new CommonGuiBase();
 		commonGuiBase.build(stage);
-    }	
+	}
 
 }

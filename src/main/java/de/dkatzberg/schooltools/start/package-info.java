@@ -1,5 +1,5 @@
 /**
- * The start package with programm information.
+ * The start package with program information.
  * 
  * @author Daniel Katzberg
  */
