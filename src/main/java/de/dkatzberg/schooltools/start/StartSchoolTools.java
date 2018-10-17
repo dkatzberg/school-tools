@@ -1,5 +1,6 @@
 package de.dkatzberg.schooltools.start;
 
+import de.dkatzberg.schooltools.common.config.I18nConfiguration;
 import de.dkatzberg.schooltools.common.gui.CommonGuiBase;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -28,8 +29,8 @@ public class StartSchoolTools extends Application {
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {
-		//The Language will be initialized
-		//TODO I18nConfiguration.getInstance();
+		// The Language will be initialized
+		I18nConfiguration.getInstance();
 		
 		// JavaFX GUI will be initialized
 		CommonGuiBase commonGuiBase = new CommonGuiBase();

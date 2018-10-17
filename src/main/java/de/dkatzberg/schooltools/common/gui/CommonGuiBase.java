@@ -2,6 +2,7 @@ package de.dkatzberg.schooltools.common.gui;
 
 import java.util.List;
 
+import de.dkatzberg.schooltools.common.config.I18nConfiguration;
 import de.dkatzberg.schooltools.grades.GradeCalculator;
 import de.dkatzberg.schooltools.grades.domain.Grade;
 import javafx.event.ActionEvent;
@@ -32,7 +33,6 @@ public class CommonGuiBase {
 	 * 
 	 * @param stage The stage is the base layer of the JavaFX GUI.
 	 */
-	// TODO Add I18n
 	// TODO Add more texts
 	public void build(Stage stage) {
 
@@ -42,32 +42,45 @@ public class CommonGuiBase {
 		gridPane.setHgap(5);
 
 		// Defining the Name text field
-		Text basePercentageText = new Text("Base Percentage");
+		Text basePercentageText = new Text(
+				I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.basisPercentage"));
 		GridPane.setConstraints(basePercentageText, 0, 0);
 		gridPane.getChildren().add(basePercentageText);
 		TextField basePercentageField = new TextField();
-		basePercentageField.setPromptText("Base Percentage");
+		basePercentageField
+				.setPromptText(I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.basisPercentage"));
 		basePercentageField.setText(basePercentage + "");
 		GridPane.setConstraints(basePercentageField, 1, 0);
 		gridPane.getChildren().add(basePercentageField);
 
 		// Defining the Last Name text field
+		Text percentagePerGradeText = new Text(
+				I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.percentagePerGrade"));
+		GridPane.setConstraints(percentagePerGradeText, 0, 1);
+		gridPane.getChildren().add(percentagePerGradeText);
 		TextField percentagePerGradeField = new TextField();
-		percentagePerGradeField.setPromptText("Percentage Per Grade");
+		percentagePerGradeField.setPromptText(
+				I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.percentagePerGrade"));
 		percentagePerGradeField.setText(percentagePerGrade + "");
-		GridPane.setConstraints(percentagePerGradeField, 0, 1);
+		GridPane.setConstraints(percentagePerGradeField, 1, 1);
 		gridPane.getChildren().add(percentagePerGradeField);
 
 		// Defining the Comment text field
+		Text maxPointsText = new Text(
+				I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.maxPoints"));
+		GridPane.setConstraints(maxPointsText, 0, 2);
+		gridPane.getChildren().add(maxPointsText);
 		TextField maxPointsField = new TextField();
 		maxPointsField.setPrefColumnCount(15);
-		maxPointsField.setPromptText("Max. Points");
+		maxPointsField
+				.setPromptText(I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.maxPoints"));
 		maxPointsField.setText(maxPoints + "");
-		GridPane.setConstraints(maxPointsField, 0, 2);
+		GridPane.setConstraints(maxPointsField, 1, 2);
 		gridPane.getChildren().add(maxPointsField);
 
 		// Defining the Submit button
-		Button calculate = new Button("Calculate");
+		Button calculate = new Button(
+				I18nConfiguration.getInstance().getStrings().getString("gui.grade.button.calculate"));
 		GridPane.setConstraints(calculate, 0, 3);
 		gridPane.getChildren().add(calculate);
 
