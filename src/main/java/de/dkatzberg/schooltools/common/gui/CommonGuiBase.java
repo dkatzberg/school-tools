@@ -5,6 +5,7 @@ import java.util.List;
 import de.dkatzberg.schooltools.common.config.I18nConfiguration;
 import de.dkatzberg.schooltools.grades.GradeCalculator;
 import de.dkatzberg.schooltools.grades.domain.Grade;
+import de.dkatzberg.schooltools.grades.latex.GradeLatexWriter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -33,7 +34,6 @@ public class CommonGuiBase {
 	 * 
 	 * @param stage The stage is the base layer of the JavaFX GUI.
 	 */
-	// TODO Add more texts
 	public void build(Stage stage) {
 
 		// Creating a GridPane container
@@ -98,7 +98,8 @@ public class CommonGuiBase {
 				List<Grade> grades = gradeCalculator.calculateGrades(Integer.parseInt(basePercentageField.getText()),
 						Integer.parseInt(percentagePerGradeField.getText()),
 						Double.parseDouble(maxPointsField.getText()));
-
+				
+				//TODO Print old list
 				grades.forEach((grade) -> {
 					System.out.println(grade.getGradeGeneral() + " (" + grade.getGradeALevel() + "): "
 							+ grade.getGradePoints().getFirstTupelElement() + " - "
@@ -106,6 +107,11 @@ public class CommonGuiBase {
 							+ grade.getGradePercentageArea().getFirstTupelElement() + "% - "
 							+ grade.getGradePercentageArea().getSecondTupelElement() + "%)");
 				});
+				
+				//Print output as latex code
+				System.out.println("\n \n");
+				GradeLatexWriter gradeLatexWriter = new GradeLatexWriter();
+				System.out.println(gradeLatexWriter.writeLatexCodeBasedOnGrades(grades));
 			}
 		});
 
