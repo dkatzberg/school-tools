@@ -12,6 +12,8 @@ import de.dkatzberg.schooltools.grades.domain.Grade;
  * @author Daniel Katzberg
  *
  */
+//TODO Move to a new package: grades.calculation
+//TODO Round the grades to full points and check that the following has + 1 Points
 public class GradeCalculator {
 
 	/**

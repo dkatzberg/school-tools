@@ -11,6 +11,7 @@ import javafx.stage.Stage;
  * @author Daniel Katzberg
  *
  */
+//TODO Write JUnit Tests
 public class StartSchoolTools extends Application {
 
 	/**

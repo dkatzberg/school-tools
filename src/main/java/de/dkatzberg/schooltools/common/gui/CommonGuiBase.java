@@ -23,6 +23,7 @@ import javafx.stage.Stage;
  * @author Daniel Katzberg
  *
  */
+//TODO Add Text Area for latex outputs and co. no longer output on System.out.println
 public class CommonGuiBase {
 
 	private int basePercentage = 45;
