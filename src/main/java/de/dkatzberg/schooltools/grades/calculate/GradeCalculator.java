@@ -1,4 +1,4 @@
-package de.dkatzberg.schooltools.grades;
+package de.dkatzberg.schooltools.grades.calculate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,6 @@ import de.dkatzberg.schooltools.grades.domain.Grade;
  * @author Daniel Katzberg
  *
  */
-//TODO Move to a new package: grades.calculation
 //TODO Round the grades to full points and check that the following has + 1 Points
 public class GradeCalculator {
 
@@ -36,6 +35,8 @@ public class GradeCalculator {
 		// TODO The 11 should not hard coded, but an parameter
 		int minPercantage = basePercantage + (11 * (percentagePerGrade));
 		int maxPercentage = 100;
+
+		// TODO 1+ is not in every case the best grade. It is an 1 in some classes.
 		String gradeGeneral = "1+";
 
 		// First Grade
@@ -46,7 +47,8 @@ public class GradeCalculator {
 		} else {
 			onePlus.setGradePercentageArea(new Tupel<Integer>(minPercantage, 100));
 		}
-		onePlus.setGradePoints(this.calculatesGradePoints(onePlus.getGradePercentageArea(), maxPoints));
+		// -1 means the default value. There is no better grade.
+		onePlus.setGradePoints(this.calculatesGradePoints(onePlus.getGradePercentageArea(), maxPoints, -1));
 		grades.add(onePlus);
 
 		// the most grades
@@ -59,14 +61,15 @@ public class GradeCalculator {
 			}
 			gradeGeneral = this.reduceGradeGeneral(gradeGeneral);
 			Tupel<Integer> percentageArea = new Tupel<Integer>(minPercantage, maxPercentage);
-			grades.add(new Grade(gradeGeneral, aLevelGrade, percentageArea,
-					this.calculatesGradePoints(percentageArea, maxPoints)));
+			grades.add(new Grade(gradeGeneral, aLevelGrade, percentageArea, this.calculatesGradePoints(percentageArea,
+					maxPoints, grades.get(grades.size() - 1).getGradePoints().getFirstTupelElement())));
 		}
 
 		// last grade
 		maxPercentage = minPercantage - 1;
 		Tupel<Integer> percentageArea = new Tupel<Integer>(0, maxPercentage);
-		grades.add(new Grade("6", 0, percentageArea, this.calculatesGradePoints(percentageArea, maxPoints)));
+		grades.add(new Grade("6", 0, percentageArea, this.calculatesGradePoints(percentageArea, maxPoints,
+				grades.get(grades.size() - 1).getGradePoints().getFirstTupelElement())));
 
 		return grades;
 	}
@@ -78,13 +81,38 @@ public class GradeCalculator {
 	 * 50. So 80% are minimum 40 points and maximum of 84% are 42 points. The return
 	 * value is a tuple, where the first element is 40 and the second element is 42.
 	 * 
-	 * @param percantageArea The percentage area for an grade.
-	 * @param maxPoints      The maximum points of an exam / test or what ever.
+	 * @param percantageArea     The percentage area for an grade.
+	 * @param maxPoints          The maximum points of an exam / test or what ever.
+	 * @param betterGradeMinimum The minimum point of the better grade
 	 * @return A tuple with minimum and maximum points for a grade.
 	 */
-	private Tupel<Double> calculatesGradePoints(Tupel<Integer> percantageArea, double maxPoints) {
-		return new Tupel<Double>((percantageArea.getFirstTupelElement() * maxPoints) / 100.0,
-				(percantageArea.getSecondTupelElement() * maxPoints) / 100.0);
+	private Tupel<Long> calculatesGradePoints(Tupel<Integer> percantageArea, double maxPoints,
+			long betterGradeMinimum) {
+
+		// Calculate minimum and maximum points for a grade
+		long maximumPointsOfGrade = Math.round((percantageArea.getSecondTupelElement() * maxPoints) / 100.0);
+		long minimumPointsOfGrade = Math.round((percantageArea.getFirstTupelElement() * maxPoints) / 100.0);
+
+		//Check for special cases
+		if (betterGradeMinimum != -1) {
+			// Check for round mistakes with high points
+			if ((betterGradeMinimum - maximumPointsOfGrade) >= 2) {
+				maximumPointsOfGrade = betterGradeMinimum - 1;
+			}
+
+			// Check for round mistakes with low points
+			if (maximumPointsOfGrade >= betterGradeMinimum) {
+				maximumPointsOfGrade = betterGradeMinimum - 1;
+			}
+
+			// Check for round mistakes with low points
+			if (minimumPointsOfGrade > maximumPointsOfGrade) {
+				minimumPointsOfGrade = maximumPointsOfGrade;
+			}
+		}
+
+		// Return Tupel
+		return new Tupel<Long>(minimumPointsOfGrade, maximumPointsOfGrade);
 	}
 
 	/**

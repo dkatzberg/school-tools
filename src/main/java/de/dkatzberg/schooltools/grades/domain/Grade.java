@@ -18,7 +18,7 @@ public class Grade {
 
 	private Tupel<Integer> gradePercentageArea;
 
-	private Tupel<Double> gradePoints;
+	private Tupel<Long> gradePoints;
 
 	/**
 	 * Constructor with all the describing elements for a grade.
@@ -41,7 +41,7 @@ public class Grade {
 	 * @param gradePercentageArea The percentage Area where a grade is given.
 	 * @param gradePoints         The points area where a grade is given
 	 */
-	public Grade(String gradeGeneral, int gradeALevel, Tupel<Integer> gradePercentageArea, Tupel<Double> gradePoints) {
+	public Grade(String gradeGeneral, int gradeALevel, Tupel<Integer> gradePercentageArea, Tupel<Long> gradePoints) {
 		this.gradeGeneral = gradeGeneral;
 		this.gradeALevel = gradeALevel;
 		this.gradePercentageArea = gradePercentageArea;
@@ -73,11 +73,11 @@ public class Grade {
 		this.gradePercentageArea = gradePercentageArea;
 	}
 
-	public Tupel<Double> getGradePoints() {
+	public Tupel<Long> getGradePoints() {
 		return gradePoints;
 	}
 
-	public void setGradePoints(Tupel<Double> gradePoints) {
+	public void setGradePoints(Tupel<Long> gradePoints) {
 		this.gradePoints = gradePoints;
 	}
 }

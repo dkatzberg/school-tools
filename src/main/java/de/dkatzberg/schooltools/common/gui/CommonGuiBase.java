@@ -3,7 +3,7 @@ package de.dkatzberg.schooltools.common.gui;
 import java.util.List;
 
 import de.dkatzberg.schooltools.common.config.I18nConfiguration;
-import de.dkatzberg.schooltools.grades.GradeCalculator;
+import de.dkatzberg.schooltools.grades.calculate.GradeCalculator;
 import de.dkatzberg.schooltools.grades.domain.Grade;
 import de.dkatzberg.schooltools.grades.latex.GradeLatexWriter;
 import javafx.event.ActionEvent;
@@ -28,7 +28,7 @@ public class CommonGuiBase {
 
 	private int basePercentage = 45;
 	private int percentagePerGrade = 5;
-	private double maxPoints = 18.0;
+	private int maxPoints = 18;
 
 	/**
 	 * This method builds the graphical user interface based on JavaFX 8.
@@ -48,8 +48,8 @@ public class CommonGuiBase {
 		GridPane.setConstraints(basePercentageText, 0, 0);
 		gridPane.getChildren().add(basePercentageText);
 		TextField basePercentageField = new TextField();
-		basePercentageField
-				.setPromptText(I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.basisPercentage"));
+		basePercentageField.setPromptText(
+				I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.basisPercentage"));
 		basePercentageField.setText(basePercentage + "");
 		GridPane.setConstraints(basePercentageField, 1, 0);
 		gridPane.getChildren().add(basePercentageField);
@@ -95,24 +95,29 @@ public class CommonGuiBase {
 			 */
 			@Override
 			public void handle(ActionEvent e) {
-				GradeCalculator gradeCalculator = new GradeCalculator();
-				List<Grade> grades = gradeCalculator.calculateGrades(Integer.parseInt(basePercentageField.getText()),
-						Integer.parseInt(percentagePerGradeField.getText()),
-						Double.parseDouble(maxPointsField.getText()));
-				
-				//TODO Print old list
-				grades.forEach((grade) -> {
-					System.out.println(grade.getGradeGeneral() + " (" + grade.getGradeALevel() + "): "
-							+ grade.getGradePoints().getFirstTupelElement() + " - "
-							+ grade.getGradePoints().getSecondTupelElement() + " ("
-							+ grade.getGradePercentageArea().getFirstTupelElement() + "% - "
-							+ grade.getGradePercentageArea().getSecondTupelElement() + "%)");
-				});
-				
-				//Print output as latex code
-				System.out.println("\n \n");
-				GradeLatexWriter gradeLatexWriter = new GradeLatexWriter();
-				System.out.println(gradeLatexWriter.writeLatexCodeBasedOnGrades(grades));
+				if (maxPoints >= 15) {
+					GradeCalculator gradeCalculator = new GradeCalculator();
+					List<Grade> grades = gradeCalculator.calculateGrades(
+							Integer.parseInt(basePercentageField.getText()),
+							Integer.parseInt(percentagePerGradeField.getText()),
+							Double.parseDouble(maxPointsField.getText()));
+
+					// TODO Remove: Print old list
+					grades.forEach((grade) -> {
+						System.out.println(grade.getGradeGeneral() + " (" + grade.getGradeALevel() + "): "
+								+ grade.getGradePoints().getFirstTupelElement() + " - "
+								+ grade.getGradePoints().getSecondTupelElement() + " ("
+								+ grade.getGradePercentageArea().getFirstTupelElement() + "% - "
+								+ grade.getGradePercentageArea().getSecondTupelElement() + "%)");
+					});
+
+					// Print output as latex code
+					System.out.println("\n \n");
+					GradeLatexWriter gradeLatexWriter = new GradeLatexWriter();
+					System.out.println(gradeLatexWriter.writeLatexCodeBasedOnGrades(grades));
+				} else {
+					System.out.println("Error: This method makes no sense with less 15.");
+				}
 			}
 		});
 

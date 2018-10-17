@@ -14,13 +14,14 @@ import de.dkatzberg.schooltools.grades.domain.Grade;
 public class GradeLatexWriter {
 
 	public String writeLatexCodeBasedOnGrades(List<Grade> grades) {
-		
-		//Initialize all String Buffer
+
+		// Initialize all String Buffer
 		StringBuffer latexGradeCode = new StringBuffer();
 		StringBuffer latexTableDefinition = new StringBuffer();
 		StringBuffer latexGradeList = new StringBuffer();
 		StringBuffer latexPointsList = new StringBuffer();
 
+		// TODO Switch Mode between normal grade and a-level grade
 		// Build all latex table lines which depends on the grade elements in one
 		// forEach
 		grades.forEach(grade -> {
@@ -39,7 +40,7 @@ public class GradeLatexWriter {
 
 		});
 
-		//Create the Latex Code
+		// Create the Latex Code
 		latexGradeCode.append("\\begin{center}\r\n");
 		latexGradeCode.append("	\\begin{tabularx}{\\textwidth}{ |" + latexTableDefinition.toString() + " }\r\n");
 		latexGradeCode.append("		\\hline\r\n");
@@ -54,8 +55,8 @@ public class GradeLatexWriter {
 		latexGradeCode.append("		\\hline\r\n");
 		latexGradeCode.append("	\\end{tabularx}\r\n");
 		latexGradeCode.append("\\end{center}");
-		
-		//Return the complete Latex Code
+
+		// Return the complete Latex Code
 		return latexGradeCode.toString();
 	}
 
