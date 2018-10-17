@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main.java.de.dkatzberg.schooltools.common.config;
+package de.dkatzberg.schooltools.common.config;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

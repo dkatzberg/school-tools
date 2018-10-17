@@ -1,4 +1,4 @@
-package main.java.de.dkatzberg.schooltools.common.domain;
+package de.dkatzberg.schooltools.common.domain;
 
 /**
  * This class defines a tuple.

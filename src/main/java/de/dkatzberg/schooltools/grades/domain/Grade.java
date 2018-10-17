@@ -1,6 +1,6 @@
-package main.java.de.dkatzberg.schooltools.grades.domain;
+package de.dkatzberg.schooltools.grades.domain;
 
-import main.java.de.dkatzberg.schooltools.common.domain.Tupel;
+import de.dkatzberg.schooltools.common.domain.Tupel;
 
 /**
  * This domain class represent a grade. General representation like 2+;

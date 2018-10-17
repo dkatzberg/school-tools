@@ -4,4 +4,4 @@
  * @author DKatzberg
  *
  */
-package main.java.de.dkatzberg.schooltools.common.config;
+package de.dkatzberg.schooltools.common.config;

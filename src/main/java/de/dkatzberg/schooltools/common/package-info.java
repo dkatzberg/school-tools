@@ -4,4 +4,4 @@
  * 
  * @author Daniel Katzberg
  */
-package main.java.de.dkatzberg.schooltools.common;
+package de.dkatzberg.schooltools.common;

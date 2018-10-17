@@ -3,4 +3,4 @@
  * 
  * @author Daniel Katzberg
  */
-package main.java.de.dkatzberg.schooltools.start;
+package de.dkatzberg.schooltools.start;

@@ -1,10 +1,10 @@
-package main.java.de.dkatzberg.schooltools.grades;
+package de.dkatzberg.schooltools.grades;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.de.dkatzberg.schooltools.common.domain.Tupel;
-import main.java.de.dkatzberg.schooltools.grades.domain.Grade;
+import de.dkatzberg.schooltools.common.domain.Tupel;
+import de.dkatzberg.schooltools.grades.domain.Grade;
 
 /**
  * This package calculates the grades for a test.

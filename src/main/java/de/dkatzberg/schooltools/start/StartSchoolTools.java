@@ -1,8 +1,8 @@
-package main.java.de.dkatzberg.schooltools.start;
+package de.dkatzberg.schooltools.start;
 
+import de.dkatzberg.schooltools.common.gui.CommonGuiBase;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import main.java.de.dkatzberg.schooltools.common.gui.CommonGuiBase;
 
 /**
  * The main method, which starts the whole application.

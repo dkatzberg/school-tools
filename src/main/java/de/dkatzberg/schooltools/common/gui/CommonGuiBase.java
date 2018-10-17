@@ -1,7 +1,9 @@
-package main.java.de.dkatzberg.schooltools.common.gui;
+package de.dkatzberg.schooltools.common.gui;
 
 import java.util.List;
 
+import de.dkatzberg.schooltools.grades.GradeCalculator;
+import de.dkatzberg.schooltools.grades.domain.Grade;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -11,8 +13,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import main.java.de.dkatzberg.schooltools.grades.GradeCalculator;
-import main.java.de.dkatzberg.schooltools.grades.domain.Grade;
 
 /**
  * This class represent the base common GUI. This class will be first initialize

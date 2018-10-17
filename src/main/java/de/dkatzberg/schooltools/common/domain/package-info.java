@@ -3,4 +3,4 @@
  * 
  * @author Daniel Katzberg
  */
-package main.java.de.dkatzberg.schooltools.common.domain;
+package de.dkatzberg.schooltools.common.domain;
