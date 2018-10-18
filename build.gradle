@@ -3,6 +3,9 @@ apply plugin: 'eclipse'
 archivesBaseName = 'schoolTools'
 version = '0.0.4-SNAPSHOT' 
 
+// Java target version
+sourceCompatibility = 1.10
+
 repositories {
     mavenCentral()
 }
@@ -21,7 +24,22 @@ jar {
     }
 }
 
-/* dependencies {
-   compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
-   compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
-}*/
+dependencies {
+   //compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
+   //compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+}
+
+test {
+    // Enable JUnit 5
+    useJUnitPlatform()
+
+    // Always run tests, even when nothing changed.
+    dependsOn 'cleanTest'
+
+    // Show test results.
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
