@@ -13,7 +13,14 @@ import de.dkatzberg.schooltools.grades.domain.Grade;
  */
 public class GradeLatexWriter {
 
-	public String writeLatexCodeBasedOnGrades(List<Grade> grades) {
+	/**
+	 * This method generates the Latex Code with the Grade-Key Calculation.
+	 * 
+	 * @param grades          All calculated Grades
+	 * @param aLevelGradeMode Output the Grades in normal mode or A-Level mode.
+	 * @return Returns the Latex Code as a String
+	 */
+	public String writeLatexCodeBasedOnGrades(List<Grade> grades, boolean aLevelGradeMode) {
 
 		// Initialize all String Buffer
 		StringBuffer latexGradeCode = new StringBuffer();
@@ -21,21 +28,37 @@ public class GradeLatexWriter {
 		StringBuffer latexGradeList = new StringBuffer();
 		StringBuffer latexPointsList = new StringBuffer();
 
-		// TODO Switch Mode between normal grade and a-level grade
 		// Build all latex table lines which depends on the grade elements in one
 		// forEach
 		grades.forEach(grade -> {
 			latexTableDefinition.append(" X |");
-			// last element needs no more & sign in latex, no more new column
-			if (grade.getGradeALevel() == 0) {
-				latexGradeList.append(grade.getGradeGeneral() + " ");
-				latexPointsList.append(grade.getGradePoints().getFirstTupelElement() + " - "
-						+ grade.getGradePoints().getSecondTupelElement() + " ");
-				// standard case: one more new column
+
+			// Output in A-Level Grade Mode
+			if (aLevelGradeMode) {
+				// last element needs no more & sign in latex, no more new column
+				if (grade.getGradeALevel() == 0) {
+					latexGradeList.append(grade.getGradeALevel() + " ");
+					latexPointsList.append(grade.getGradePoints().getFirstTupelElement() + " - "
+							+ grade.getGradePoints().getSecondTupelElement() + " ");
+					// standard case: one more new column
+				} else {
+					latexGradeList.append(grade.getGradeALevel() + " & ");
+					latexPointsList.append(grade.getGradePoints().getFirstTupelElement() + " - "
+							+ grade.getGradePoints().getSecondTupelElement() + " & ");
+				}
+				// Normal Grade Mode
 			} else {
-				latexGradeList.append(grade.getGradeGeneral() + " & ");
-				latexPointsList.append(grade.getGradePoints().getFirstTupelElement() + " - "
-						+ grade.getGradePoints().getSecondTupelElement() + " & ");
+				// last element needs no more & sign in latex, no more new column
+				if (grade.getGradeALevel() == 0) {
+					latexGradeList.append(grade.getGradeGeneral() + " ");
+					latexPointsList.append(grade.getGradePoints().getFirstTupelElement() + " - "
+							+ grade.getGradePoints().getSecondTupelElement() + " ");
+					// standard case: one more new column
+				} else {
+					latexGradeList.append(grade.getGradeGeneral() + " & ");
+					latexPointsList.append(grade.getGradePoints().getFirstTupelElement() + " - "
+							+ grade.getGradePoints().getSecondTupelElement() + " & ");
+				}
 			}
 
 		});
