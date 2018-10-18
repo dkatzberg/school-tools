@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -29,6 +30,8 @@ public class CommonGuiBase {
 	private int basePercentage = 45;
 	private int percentagePerGrade = 5;
 	private int maxPoints = 18;
+	
+	private CheckBox checkBoxOnePlus;
 
 	/**
 	 * This method builds the graphical user interface based on JavaFX 8.
@@ -78,11 +81,17 @@ public class CommonGuiBase {
 		maxPointsField.setText(maxPoints + "");
 		GridPane.setConstraints(maxPointsField, 1, 2);
 		gridPane.getChildren().add(maxPointsField);
+		
+		//Checkbox for an 1+
+		this.checkBoxOnePlus = new CheckBox("1+ ist vorhanden");
+		GridPane.setConstraints(this.checkBoxOnePlus, 0, 3);
+		gridPane.getChildren().add(checkBoxOnePlus);
+		
 
 		// Defining the Submit button
 		Button calculate = new Button(
 				I18nConfiguration.getInstance().getStrings().getString("gui.grade.button.calculate"));
-		GridPane.setConstraints(calculate, 0, 3);
+		GridPane.setConstraints(calculate, 0, 4);
 		gridPane.getChildren().add(calculate);
 
 		// Setting an action for the Submit button
@@ -100,7 +109,7 @@ public class CommonGuiBase {
 					List<Grade> grades = gradeCalculator.calculateGrades(
 							Integer.parseInt(basePercentageField.getText()),
 							Integer.parseInt(percentagePerGradeField.getText()),
-							Double.parseDouble(maxPointsField.getText()));
+							Double.parseDouble(maxPointsField.getText()), CommonGuiBase.this.checkBoxOnePlus.isSelected());
 
 					// TODO Remove: Print old list
 					grades.forEach((grade) -> {

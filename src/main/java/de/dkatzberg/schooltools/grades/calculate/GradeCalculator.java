@@ -12,7 +12,6 @@ import de.dkatzberg.schooltools.grades.domain.Grade;
  * @author Daniel Katzberg
  *
  */
-//TODO Round the grades to full points and check that the following has + 1 Points
 public class GradeCalculator {
 
 	/**
@@ -26,33 +25,37 @@ public class GradeCalculator {
 	 *                           a-level grade).
 	 * @param percentagePerGrade The allowed percentage for a grade.
 	 * @param maxPoints          The maximum points for an test / exam or what ever.
+	 * @param onePlusAvailable   Is there the 1+ Grade available or not.
 	 * @return It returns a list of all calculated Grades with the given percentage
 	 *         and points information.
 	 */
-	public List<Grade> calculateGrades(int basePercantage, int percentagePerGrade, double maxPoints) {
-
+	public List<Grade> calculateGrades(int basePercantage, int percentagePerGrade, double maxPoints,
+			boolean onePlusAvailable) {
+		
+		//Install Grade, where an 1 is the best grade
 		List<Grade> grades = new ArrayList<>();
-		// TODO The 11 should not hard coded, but an parameter
-		int minPercantage = basePercantage + (11 * (percentagePerGrade));
+		int minPercantage = 100 - percentagePerGrade;
 		int maxPercentage = 100;
-
-		// TODO 1+ is not in every case the best grade. It is an 1 in some classes.
-		String gradeGeneral = "1+";
+		String gradeGeneral = "1";
+		int bestALevelGrade = 14;
+		
+		//install Grade, where 1+ is the best grade
+		if (onePlusAvailable) {
+			gradeGeneral = "1+";
+			minPercantage = 100;
+			bestALevelGrade = 15;
+		}
 
 		// First Grade
-		Grade onePlus = new Grade(gradeGeneral, 15, null);
-		if (minPercantage >= 100) {
-			onePlus.setGradePercentageArea(new Tupel<Integer>(100, 100));
-			minPercantage = 100;
-		} else {
-			onePlus.setGradePercentageArea(new Tupel<Integer>(minPercantage, 100));
-		}
+		Grade bestGrade = new Grade(gradeGeneral, bestALevelGrade, null);
+		bestGrade.setGradePercentageArea(new Tupel<Integer>(minPercantage, maxPercentage));
+		
 		// -1 means the default value. There is no better grade.
-		onePlus.setGradePoints(this.calculatesGradePoints(onePlus.getGradePercentageArea(), maxPoints, -1));
-		grades.add(onePlus);
+		bestGrade.setGradePoints(this.calculatesGradePoints(bestGrade.getGradePercentageArea(), maxPoints, -1));
+		grades.add(bestGrade);
 
 		// the most grades
-		for (int aLevelGrade = 14; aLevelGrade >= 1; aLevelGrade--) {
+		for (int aLevelGrade = (bestALevelGrade - 1); aLevelGrade >= 1; aLevelGrade--) {
 			maxPercentage = minPercantage - 1;
 			if (aLevelGrade <= 2) {
 				minPercantage -= (percentagePerGrade * 2);
@@ -93,7 +96,7 @@ public class GradeCalculator {
 		long maximumPointsOfGrade = Math.round((percantageArea.getSecondTupelElement() * maxPoints) / 100.0);
 		long minimumPointsOfGrade = Math.round((percantageArea.getFirstTupelElement() * maxPoints) / 100.0);
 
-		//Check for special cases
+		// Check for special cases
 		if (betterGradeMinimum != -1) {
 			// Check for round mistakes with high points
 			if ((betterGradeMinimum - maximumPointsOfGrade) >= 2) {
