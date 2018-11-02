@@ -68,7 +68,7 @@ public class GradeLatexWriter {
 		latexGradeCode.append("	\\begin{tabularx}{\\textwidth}{ |" + latexTableDefinition.toString() + " }\r\n");
 		latexGradeCode.append("		\\hline\r\n");
 		latexGradeCode.append("		\\multicolumn{" + grades.size() + "}{|c|}{\\textbf{"
-				+ I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.pointsGradeKey")
+				+ I18nConfiguration.getInstance().getStrings().getString("gui.grade.latex.pointsGradeKey")
 				+ "}} \\\\\r\n");
 		latexGradeCode.append("		\\hline\r\n");
 		latexGradeCode.append("		" + latexGradeList.toString() + "\\\\\r\n");
