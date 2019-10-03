@@ -28,8 +28,7 @@ import javafx.stage.Stage;
  */
 //TODO Add Text Area for latex outputs and co. no longer output on System.out.println
 public class CommonGuiBase {
-
-	private int basePercentage = 45;
+	
 	private int percentagePerGrade = 5;
 	private int maxPoints = 18;
 
@@ -52,19 +51,7 @@ public class CommonGuiBase {
 		gridPane.setVgap(5);
 		gridPane.setHgap(5);
 
-		// Defining the Name text field
-		Text basePercentageText = new Text(
-				I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.basisPercentage"));
-		GridPane.setConstraints(basePercentageText, 0, 0);
-		gridPane.getChildren().add(basePercentageText);
-		TextField basePercentageField = new TextField();
-		basePercentageField.setPromptText(
-				I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.basisPercentage"));
-		basePercentageField.setText(basePercentage + "");
-		GridPane.setConstraints(basePercentageField, 1, 0);
-		gridPane.getChildren().add(basePercentageField);
-
-		// Defining the Last Name text field
+		// Defining the Percentage per Grade Field
 		Text percentagePerGradeText = new Text(
 				I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.percentagePerGrade"));
 		GridPane.setConstraints(percentagePerGradeText, 0, 1);
@@ -76,7 +63,7 @@ public class CommonGuiBase {
 		GridPane.setConstraints(percentagePerGradeField, 1, 1);
 		gridPane.getChildren().add(percentagePerGradeField);
 
-		// Defining the Comment text field
+		// Defining the max points field
 		Text maxPointsText = new Text(
 				I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.maxPoints"));
 		GridPane.setConstraints(maxPointsText, 0, 2);
@@ -134,7 +121,6 @@ public class CommonGuiBase {
 				if (maxPoints >= 15) {
 					GradeCalculator gradeCalculator = new GradeCalculator();
 					List<Grade> grades = gradeCalculator.calculateGrades(
-							Integer.parseInt(basePercentageField.getText()),
 							Integer.parseInt(percentagePerGradeField.getText()),
 							Double.parseDouble(maxPointsField.getText()),
 							CommonGuiBase.this.checkBoxOnePlus.isSelected());

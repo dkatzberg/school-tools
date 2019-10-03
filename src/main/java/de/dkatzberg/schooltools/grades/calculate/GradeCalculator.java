@@ -19,17 +19,13 @@ public class GradeCalculator {
 	 * all grades with depending percentage areas and needed points. The method
 	 * returns a list of {@link Grade}s.
 	 * 
-	 * @param basePercantage     The base percentage is the first grade where the
-	 *                           percentage per grade begin. This is very often (and
-	 *                           not always) a 4 (general grade, not a German
-	 *                           a-level grade).
 	 * @param percentagePerGrade The allowed percentage for a grade.
 	 * @param maxPoints          The maximum points for an test / exam or what ever.
 	 * @param onePlusAvailable   Is there the 1+ Grade available or not.
 	 * @return It returns a list of all calculated Grades with the given percentage
 	 *         and points information.
 	 */
-	public List<Grade> calculateGrades(int basePercantage, int percentagePerGrade, double maxPoints,
+	public List<Grade> calculateGrades(int percentagePerGrade, double maxPoints,
 			boolean onePlusAvailable) {
 		
 		//Install Grade, where an 1 is the best grade
@@ -42,7 +38,6 @@ public class GradeCalculator {
 		//install Grade, where 1+ is the best grade
 		if (onePlusAvailable) {
 			gradeGeneral = "1+";
-			minPercantage = 100;
 			bestALevelGrade = 15;
 		}
 

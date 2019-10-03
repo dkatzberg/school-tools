@@ -1,6 +1,9 @@
+//For JavaFX - Gradle Plugin 
+//You have to add the lib Folder of JavaFX to the 
+//Build Path
 plugins {
   id 'application'
-  id 'org.openjfx.javafxplugin' version '0.0.7'
+  id 'org.openjfx.javafxplugin' version '0.0.8'
 }
 
 apply plugin: 'java'
@@ -11,8 +14,6 @@ version = '0.0.5-SNAPSHOT'
 
 // Java target version
 sourceCompatibility = '1.12'
-
-
 
 repositories {
     mavenCentral()
@@ -32,17 +33,19 @@ jar {
     }
 }
 
+//Actual JavaFX Versiob
 javafx {
-    version = '12'
+    version = '13'
 }
 
 dependencies {
    //compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
    //compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
-   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
-   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
 }
 
+//The main class for the program.
 mainClassName = 'main.java.de.dkatzberg.schooltools.start.StartSchoolTools'
 
 test {
