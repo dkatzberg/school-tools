@@ -148,7 +148,9 @@ public class CommonGuiBase {
 		// Create base pane
 		StackPane basePane = new StackPane();
 		basePane.getChildren().add(gridPane);
-		stage.setScene(new Scene(basePane, 300, 250));
+		
+		//(Pane, X-Size, Y-Size)
+		stage.setScene(new Scene(basePane, 330, 170));
 		stage.setX(0);
 		stage.setY(0);
 		stage.show();
