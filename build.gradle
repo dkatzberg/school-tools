@@ -36,6 +36,7 @@ jar {
 //Actual JavaFX Versiob
 javafx {
     version = '13'
+    modules = ['javafx.controls','javafx.graphics']
 }
 
 dependencies {
