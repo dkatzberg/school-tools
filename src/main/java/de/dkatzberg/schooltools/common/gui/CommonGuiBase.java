@@ -12,10 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -40,12 +41,33 @@ public class CommonGuiBase {
 	 * 
 	 * @param stage The stage is the base layer of the JavaFX GUI.
 	 */
-	// TODO Redesign GUI
 	public void build(Stage stage) {
 
 		// Set Title
 		stage.setTitle(I18nConfiguration.getInstance().getStrings().getString("gui.title"));
 
+		//Create Tab for Grades
+        Tab tabGrade = new Tab(I18nConfiguration.getInstance().
+        		getStrings().getString("gui.tab.grade.title"));
+        tabGrade.setContent(this.createGradeTab());
+
+		// Create Tab Pane		
+		TabPane tabPane = new TabPane();
+        tabPane.getTabs().add(tabGrade);
+		
+		//(Pane, X-Size, Y-Size)
+		stage.setScene(new Scene(tabPane, 335, 190));
+		stage.setX(0);
+		stage.setY(0);
+		stage.show();
+	}
+	
+	/**
+	 * This method creates the tab with the grade implementation.
+	 * 
+	 * @return GridPane with all fields for the grade declaration.
+	 */
+	private GridPane createGradeTab() {
 		// Creating a GridPane container
 		GridPane gridPane = new GridPane();
 		gridPane.setVgap(5);
@@ -105,7 +127,7 @@ public class CommonGuiBase {
 		// Defining the Submit button
 		Button calculate = new Button(
 				I18nConfiguration.getInstance().getStrings().getString("gui.grade.button.calculate"));
-		GridPane.setConstraints(calculate, 0, 6);
+		GridPane.setConstraints(calculate, 1, 6);
 		gridPane.getChildren().add(calculate);
 
 		// Setting an action for the Submit button
@@ -144,16 +166,8 @@ public class CommonGuiBase {
 				}
 			}
 		});
-
-		// Create base pane
-		StackPane basePane = new StackPane();
-		basePane.getChildren().add(gridPane);
 		
-		//(Pane, X-Size, Y-Size)
-		stage.setScene(new Scene(basePane, 330, 170));
-		stage.setX(0);
-		stage.setY(0);
-		stage.show();
+		return gridPane;
 	}
 
 	/**
