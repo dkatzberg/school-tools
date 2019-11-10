@@ -1,5 +1,4 @@
 //For JavaFX - Gradle Plugin 
-//You have to add the lib Folder of JavaFX to the 
 //Build Path
 plugins {
   id 'application'
@@ -42,12 +41,13 @@ javafx {
 dependencies {
    //compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
    //compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+   compile 'org.junit.jupiter:junit-jupiter-api:5.5.2'
    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
 }
 
 //The main class for the program.
-mainClassName = 'main.java.de.dkatzberg.schooltools.start.StartSchoolTools'
+mainClassName = 'de.dkatzberg.schooltools.start.StartSchoolTools'
 
 test {
     // Enable JUnit 5
