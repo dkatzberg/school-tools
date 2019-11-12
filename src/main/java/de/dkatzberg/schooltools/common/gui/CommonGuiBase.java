@@ -28,6 +28,7 @@ import javafx.stage.Stage;
  *
  */
 //TODO Add Text Area for latex outputs and co. no longer output on System.out.println
+//TODO Add an Tab for Options...
 public class CommonGuiBase {
 	
 	private int percentagePerGrade = 5;
