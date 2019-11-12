@@ -1,35 +1,44 @@
-//For JavaFX - Gradle Plugin 
-//Build Path
+//@author: Daniel Katzberg
+//Gradle Build File for the School Tools Software.
+
+
+//Applied Plugins
 plugins {
   id 'application'
+  //For JavaFX - Gradle Plugin
   id 'org.openjfx.javafxplugin' version '0.0.8'
 }
-
 apply plugin: 'java'
 apply plugin: 'org.openjfx.javafxplugin'
 apply plugin: 'eclipse'
+
+//Basic Project Information
 archivesBaseName = 'schoolTools'
-version = '0.0.5-SNAPSHOT' 
+version = '0.0.6' 
+mainClassName = 'de.dkatzberg.schooltools.start.StartSchoolTools'
 
-// Java target version
-sourceCompatibility = '1.12'
-
-repositories {
-    mavenCentral()
-}
-
-sourceSets {
-	    main {
-	        resources {
-	            srcDirs "src/main/resources"
-	        }
-	    }
-	 }
-
+//Set Mainclass in the jar manifest
 jar {
     manifest {
         attributes 'Main-Class': 'main.java.de.dkatzberg.schooltools.start.StartSchoolTools'
     }
+}
+
+// Java target version
+sourceCompatibility = '1.12'
+
+//Repository for the used packages.
+repositories {
+    mavenCentral()
+}
+
+//Set the resource folder.
+sourceSets {
+	main {
+		resources {
+	    	srcDirs "src/main/resources"
+	    }
+	}
 }
 
 //Actual JavaFX Versiob
@@ -38,17 +47,15 @@ javafx {
     modules = ['javafx.controls','javafx.graphics']
 }
 
+
 dependencies {
-   //compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
-   //compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
    compile 'org.junit.jupiter:junit-jupiter-api:5.5.2'
    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
 }
 
-//The main class for the program.
-mainClassName = 'de.dkatzberg.schooltools.start.StartSchoolTools'
 
+//Tests Information
 test {
     // Enable JUnit 5
     useJUnitPlatform()
