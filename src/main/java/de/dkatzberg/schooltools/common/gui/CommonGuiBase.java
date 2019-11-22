@@ -38,7 +38,7 @@ public class CommonGuiBase {
         tabPane.getTabs().add(tabGrade);
 		
 		//(Pane, X-Size, Y-Size)
-		stage.setScene(new Scene(tabPane, 335, 190));
+		stage.setScene(new Scene(tabPane, 480, 380));
 		stage.setX(0);
 		stage.setY(0);
 		stage.show();
