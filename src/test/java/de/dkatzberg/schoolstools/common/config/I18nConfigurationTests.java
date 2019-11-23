@@ -2,6 +2,7 @@ package de.dkatzberg.schoolstools.common.config;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import de.dkatzberg.schooltools.common.config.I18nConfiguration;
@@ -11,15 +12,22 @@ import de.dkatzberg.schooltools.common.config.I18nConfiguration;
  * @author Daniel Katzberg
  *
  */
-public class I18nConfigurationTest {
+public class I18nConfigurationTests {
+	
+	private I18nConfiguration i18nConfiguration;
+	
+	@BeforeEach
+	public void init() {
+		this.i18nConfiguration = I18nConfiguration.getInstance();
+	}
+	
 
 	@Test
-	public void getLanguageElement() {
+	public void getLanguageElementTest() {
 		//Arrange
-		I18nConfiguration i18nConfiguration = I18nConfiguration.getInstance();
-		
+				
 		//Act
-		String guiTitleString = i18nConfiguration.getStrings().getString("gui.title");
+		String guiTitleString = this.i18nConfiguration.getStrings().getString("gui.title");
 		
 		//Assert
 		assertArrayEquals("School Tools".toCharArray(), 
@@ -29,12 +37,11 @@ public class I18nConfigurationTest {
 	@Test
 	public void changeLanguage() {
 		//Arrange
-		I18nConfiguration i18nConfiguration = I18nConfiguration.getInstance();
 		
 		//Act
-		String guiTitleGermanString = i18nConfiguration.getStrings().getString("gui.grade.text.percentagePerGrade");
-		i18nConfiguration.updateI18n("en", "EN");
-		String guiTitleEnglishString = i18nConfiguration.getStrings().getString("gui.grade.text.percentagePerGrade");
+		String guiTitleGermanString = this.i18nConfiguration.getStrings().getString("gui.grade.text.percentagePerGrade");
+		this.i18nConfiguration.updateI18n("en", "EN");
+		String guiTitleEnglishString = this.i18nConfiguration.getStrings().getString("gui.grade.text.percentagePerGrade");
 		
 		//Assert
 		assertArrayEquals("Prozentspanne pro Note".toCharArray(), 

@@ -6,7 +6,6 @@ package de.dkatzberg.schooltools.common.domain;
  * @author Daniel Katzberg
  *
  */
-//TODO Write Test for the Tupel
 public class Tupel<T> {
 
 	private T firstTupelElement;
