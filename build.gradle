@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 
 //Basic Project Information
 archivesBaseName = 'schoolTools'
-version = '0.1.0-SNAPSHOT' 
+version = '0.1.0' 
 mainClassName = 'de.dkatzberg.schooltools.start.StartSchoolTools'
 
 //Set Mainclass in the jar manifest
