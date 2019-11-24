@@ -10,7 +10,6 @@ import de.dkatzberg.schooltools.common.domain.Tupel;
  * @author Daniel Katzberg
  *
  */
-//TODO Write Test for Grade
 public class Grade {
 
 	private String gradeGeneral;

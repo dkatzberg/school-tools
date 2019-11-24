@@ -1,4 +1,4 @@
-package de.dkatzberg.schoolstools.common.config;
+package de.dkatzberg.schooltools.common.config;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
