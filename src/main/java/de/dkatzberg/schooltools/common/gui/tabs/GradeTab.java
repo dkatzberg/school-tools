@@ -8,7 +8,7 @@ import java.util.List;
 import de.dkatzberg.schooltools.common.config.I18nConfiguration;
 import de.dkatzberg.schooltools.grades.calculate.GradeCalculator;
 import de.dkatzberg.schooltools.grades.domain.Grade;
-import de.dkatzberg.schooltools.grades.latex.GradeLatexWriter;
+import de.dkatzberg.schooltools.grades.latex.GradesLatexWriter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -152,7 +152,7 @@ public class GradeTab implements SchoolToolTab {
 							GradeTab.this.getCheckBoxOnePlus().isSelected());
 
 					// Print output as latex code
-					GradeLatexWriter gradeLatexWriter = new GradeLatexWriter();
+					GradesLatexWriter gradeLatexWriter = new GradesLatexWriter();
 					GradeTab.this.getTextArea().setText(
 							gradeLatexWriter.writeLatexCodeBasedOnGrades(
 									grades, 

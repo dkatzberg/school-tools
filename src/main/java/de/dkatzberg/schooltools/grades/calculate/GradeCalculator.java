@@ -12,7 +12,6 @@ import de.dkatzberg.schooltools.grades.domain.Grade;
  * @author Daniel Katzberg
  *
  */
-//TODO Write Tests for the GradeCalculator
 public class GradeCalculator {
 
 	/**
