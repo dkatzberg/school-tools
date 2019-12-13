@@ -27,9 +27,10 @@ import javafx.scene.text.Text;
  *
  */
 public class GradeTab implements SchoolToolTab {
-
-	private int percentagePerGrade;
-	private int maxPoints;
+	
+	private static int DEFAULT_PERCENTAGE_PER_GRADE = 5;
+	
+	private TextField maxPointsField;
 	
 	private TextArea textArea;
 
@@ -39,11 +40,7 @@ public class GradeTab implements SchoolToolTab {
 	/**
 	 * Default Constructor of the Grade Tab.
 	 */
-	public GradeTab() {
-		//Default values with no deeper meaning. 
-		this.setMaxPoints(18);
-		this.setPercentagePerGrade(5);
-	}
+	public GradeTab() {}
 
 	
 	@Override
@@ -61,7 +58,9 @@ public class GradeTab implements SchoolToolTab {
 		TextField percentagePerGradeField = new TextField();
 		percentagePerGradeField.setPromptText(
 				I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.percentagePerGrade"));
-		percentagePerGradeField.setText(this.getPercentagePerGrade() + "");
+		percentagePerGradeField.setText(DEFAULT_PERCENTAGE_PER_GRADE + "");
+		percentagePerGradeField.setEditable(false);
+		percentagePerGradeField.setDisable(true);
 		GridPane.setConstraints(percentagePerGradeField, 1, 1);
 		gridPane.getChildren().add(percentagePerGradeField);
 
@@ -70,13 +69,14 @@ public class GradeTab implements SchoolToolTab {
 				I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.maxPoints"));
 		GridPane.setConstraints(maxPointsText, 0, 2);
 		gridPane.getChildren().add(maxPointsText);
-		TextField maxPointsField = new TextField();
-		maxPointsField.setPrefColumnCount(15);
-		maxPointsField
+		
+		this.maxPointsField = new TextField();
+		this.maxPointsField.setPrefColumnCount(15);
+		this.maxPointsField
 				.setPromptText(I18nConfiguration.getInstance().getStrings().getString("gui.grade.text.maxPoints"));
-		maxPointsField.setText(this.getMaxPoints() + "");
-		GridPane.setConstraints(maxPointsField, 1, 2);
-		gridPane.getChildren().add(maxPointsField);
+		this.maxPointsField.setText(18 + "");//Default Value
+		GridPane.setConstraints(this.maxPointsField, 1, 2);
+		gridPane.getChildren().add(this.maxPointsField);
 
 		// Headline for Radiobuttons
 		Text gradeToggleHeadline = new Text(
@@ -108,9 +108,7 @@ public class GradeTab implements SchoolToolTab {
 		Button calculateButton = new Button(
 				I18nConfiguration.getInstance().getStrings().getString("gui.grade.button.calculate"));
 		GridPane.setConstraints(calculateButton, 1, 6);
-		this.defineActionHandling(calculateButton, 
-				Integer.parseInt(percentagePerGradeField.getText()),
-				Double.parseDouble(maxPointsField.getText()));
+		this.defineActionHandling(calculateButton);
 		gridPane.getChildren().add(calculateButton);
 		
 		// Add Textarea for the result
@@ -131,10 +129,8 @@ public class GradeTab implements SchoolToolTab {
 	 * This method defined the action of the calculation button.
 	 * 
 	 * @param calculateButton The Calculation button which get the action handling.
-	 * @param percentagePerGrade The given value of the percentage per grade value by the user.
-	 * @param maxPoints The given max point by the user.
 	 */
-	private void defineActionHandling(Button calculateButton, int percentagePerGrade, double maxPoints) {
+	private void defineActionHandling(Button calculateButton) {
 		// Setting an action for the Submit button
 		calculateButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -145,10 +141,10 @@ public class GradeTab implements SchoolToolTab {
 			 */
 			@Override
 			public void handle(ActionEvent e) {
-				if (maxPoints >= 15) {
+				if (GradeTab.this.readMaxPoint() >= 15) {
 					GradeCalculator gradeCalculator = new GradeCalculator();
 					List<Grade> grades = gradeCalculator.calculateGrades(
-							percentagePerGrade, maxPoints, 
+							GradeTab.DEFAULT_PERCENTAGE_PER_GRADE, GradeTab.this.readMaxPoint(), 
 							GradeTab.this.getCheckBoxOnePlus().isSelected());
 
 					// Print output as latex code
@@ -163,6 +159,10 @@ public class GradeTab implements SchoolToolTab {
 				}
 			}
 		});
+	}
+	
+	private double readMaxPoint() {
+		return Double.parseDouble(this.maxPointsField.getText());
 	}
 
 	/**
@@ -180,22 +180,6 @@ public class GradeTab implements SchoolToolTab {
 	/* GETTER / SETTER */
 	private TextArea getTextArea() {
 		return textArea;
-	}
-
-	private int getPercentagePerGrade() {
-		return percentagePerGrade;
-	}
-
-	private void setPercentagePerGrade(int percentagePerGrade) {
-		this.percentagePerGrade = percentagePerGrade;
-	}
-
-	private int getMaxPoints() {
-		return maxPoints;
-	}
-
-	private void setMaxPoints(int maxPoints) {
-		this.maxPoints = maxPoints;
 	}
 
 	private CheckBox getCheckBoxOnePlus() {

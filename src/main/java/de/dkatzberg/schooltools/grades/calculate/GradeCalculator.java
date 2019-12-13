@@ -30,7 +30,7 @@ public class GradeCalculator {
 		
 		//Install Grade, where an 1 is the best grade
 		List<Grade> grades = new ArrayList<>();
-		int minPercantage = 100 - percentagePerGrade;
+		int minPercantage = 100 - percentagePerGrade + 1;
 		int maxPercentage = 100;
 		String gradeGeneral = "1";
 		int bestALevelGrade = 14;
