@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import de.dkatzberg.schooltools.common.config.I18nConfiguration;
-
 /**
  * Test the I18nConfiguration Class
  * @author Daniel Katzberg

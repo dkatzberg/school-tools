@@ -46,10 +46,10 @@ public class GradeCalculatorTests {
 		assertEquals(8, grades.get(6).getGradeALevel());
 		assertArrayEquals("3-".toCharArray(), 
 				grades.get(7).getGradeGeneral().toCharArray());
-		assertEquals(55, grades.get(8).getGradePercentageArea().getFirstTupelElement());
-		assertEquals(54, grades.get(9).getGradePercentageArea().getSecondTupelElement());
-		assertEquals((long)160, grades.get(1).getGradePoints().getFirstTupelElement());
-		assertEquals((long)159, grades.get(2).getGradePoints().getSecondTupelElement());
+		assertEquals(56, grades.get(8).getGradePercentageArea().getFirstTupelElement());
+		assertEquals(55, grades.get(9).getGradePercentageArea().getSecondTupelElement());
+		assertEquals((long)162, grades.get(1).getGradePoints().getFirstTupelElement());
+		assertEquals((long)161, grades.get(2).getGradePoints().getSecondTupelElement());
 	}
 	
 	@Test
@@ -64,9 +64,9 @@ public class GradeCalculatorTests {
 		assertEquals(9, grades.get(6).getGradeALevel());
 		assertArrayEquals("3".toCharArray(), 
 				grades.get(7).getGradeGeneral().toCharArray());
-		assertEquals(55, grades.get(8).getGradePercentageArea().getFirstTupelElement());
-		assertEquals(54, grades.get(9).getGradePercentageArea().getSecondTupelElement());
-		assertEquals((long)246, grades.get(1).getGradePoints().getFirstTupelElement());
-		assertEquals((long)245, grades.get(2).getGradePoints().getSecondTupelElement());
+		assertEquals(56, grades.get(8).getGradePercentageArea().getFirstTupelElement());
+		assertEquals(55, grades.get(9).getGradePercentageArea().getSecondTupelElement());
+		assertEquals((long)248, grades.get(1).getGradePoints().getFirstTupelElement());
+		assertEquals((long)247, grades.get(2).getGradePoints().getSecondTupelElement());
 	}
 }
