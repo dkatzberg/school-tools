@@ -25,7 +25,7 @@ jar {
 }
 
 // Java target version
-sourceCompatibility = '1.14'
+sourceCompatibility = '15'
 
 //Repository for the used packages.
 repositories {
@@ -43,7 +43,7 @@ sourceSets {
 
 //Actual JavaFX Versiob
 javafx {
-    version = '13'
+    version = '15'
     modules = ['javafx.controls','javafx.graphics']
 }
 
