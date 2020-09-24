@@ -6,7 +6,7 @@
 plugins {
   id 'application'
   //For JavaFX - Gradle Plugin
-  id 'org.openjfx.javafxplugin' version '0.0.8'
+  id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 apply plugin: 'java'
 apply plugin: 'org.openjfx.javafxplugin'
@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 
 //Basic Project Information
 archivesBaseName = 'schoolTools'
-version = '0.2.0-SNAPSHOT' 
+version = '0.2.1-SNAPSHOT' 
 mainClassName = 'de.dkatzberg.schooltools.start.StartSchoolTools'
 
 //Set Mainclass in the jar manifest
@@ -25,7 +25,7 @@ jar {
 }
 
 // Java target version
-sourceCompatibility = '15'
+sourceCompatibility = '1.15'
 
 //Repository for the used packages.
 repositories {
@@ -49,7 +49,7 @@ javafx {
 
 
 dependencies {
-   compile 'org.mongodb:mongodb-driver-sync:3.11.2'
+   compile 'org.mongodb:mongodb-driver-sync:4.1.0'
    compile 'org.junit.jupiter:junit-jupiter-api:5.7.0'
    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
